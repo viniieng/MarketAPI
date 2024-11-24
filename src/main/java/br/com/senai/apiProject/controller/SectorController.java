@@ -38,4 +38,14 @@ public class SectorController {
     public List<Sector> searchSectorByName(@PathVariable String name) {
         return sectorService.searchSectorByName(name);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Sector> updateSector(@PathVariable Long id, @RequestBody Sector sector) {
+        try {
+            Sector updatedSector = sectorService.updateSector(id, sector);
+            return ResponseEntity.ok(updatedSector);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

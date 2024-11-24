@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SectorService {
@@ -44,5 +45,16 @@ public class SectorService {
         }
 
         return sectors;
+    }
+
+    public Sector updateSector(Long id, Sector updatedSector) {
+        Optional<Sector> existingSectorOpt = sectorRepository.findById(id);
+        if (existingSectorOpt.isPresent()) {
+            Sector existingSector = existingSectorOpt.get();
+            existingSector.setName(updatedSector.getName());
+            return sectorRepository.save(existingSector);
+        } else {
+            throw new RuntimeException("Sector not found with id: " + id);
+        }
     }
 }
