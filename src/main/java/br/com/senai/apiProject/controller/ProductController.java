@@ -22,12 +22,6 @@ public class ProductController {
         return productService.findAll();
     }
 
-    @PostMapping
-    public ResponseEntity<Product> create(@RequestBody Product product) {
-        Product newProduct = productService.save(product);
-        return ResponseEntity.ok(newProduct);
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         productService.deleteById(id);

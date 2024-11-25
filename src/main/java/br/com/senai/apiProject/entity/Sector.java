@@ -18,5 +18,7 @@ public class Sector {
 
     private String name;
 
+    @OneToMany(mappedBy = "sector", cascade = CascadeType.ALL)
+    private List<Product> products;
 
 }

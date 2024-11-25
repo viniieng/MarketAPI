@@ -1,9 +1,6 @@
 package br.com.senai.apiProject.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+
 public class Product {
 
     @Id
@@ -22,5 +20,10 @@ public class Product {
 
     private String name;
     private Double price;
+
+    @ManyToOne
+    @JoinColumn(name = "sector_id")
+    private Sector sector;
+
 
 }
